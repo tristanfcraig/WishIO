@@ -1,33 +1,69 @@
-<p id="notice"><%= notice %></p>
+<% provide (:title), 'My List' %>
 
-<h1>Listing Items</h1>
+<!-- Styles for Elements exclusive to this View -->
+<style>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Retailer</th>
-      <th>Url</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  h4 {
+    margin: 0;
+    padding: 0;
+  }
+  h6 {
+    margin: 0;
+    padding: 0;
+  }
 
-  <tbody>
+  .demo-card-wide > .mdl-card__title {
+    width: auto;
+    color: #fff;
+    height: 250px;
+
+  /* Random Ass Picture but it seems to make the images display correctly */
+  background: url('http://s7d2.scene7.com/is/image/PoloGSI/s7-1196624_lifestyle?wid=2000&hei=2000') top / cover;
+
+  }
+
+</style>
+
+<!-- Grid of Items -->
+<div class="mdl-grid">
+
     <% @items.each do |item| %>
-      <tr>
-        <td><%= item.name %></td>
-        <td><%= item.retailer %></td>
-        <td><%= item.url %></td>
-        <td><%= item.price %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+
+    <!-- Creates Grid Cells -->
+    <div class="mdl-cell mdl-cell--4-col">
+
+      <!-- Creates Cards -->
+      <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="width:auto;">
+
+        <!-- Sets the Background Image of the Card to the Item URL -->
+        <div class="mdl-card__title" style="background-image:url(<%= item.url %>);background-size: cover;background-position:center">
+        </div>
+
+        <!-- Accesses Attributes of the specific Card -->
+        <div class="mdl-card__supporting-text">
+          <h4><%= item.name %></h4>
+          <h6><%= item.retailer %></h6>
+        </div>
+
+        <!-- Lower Card Buttons -->
+        <div class="mdl-card__actions mdl-card--border">
+
+          <!-- More Info Button calls the Show Action -->
+          <%= link_to 'More Info', item, :class=>"mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"%>
+
+          <!-- Purchase Button that does nothing-->
+          <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            Purchase
+          </button>
+
+        </div>
+
+        <div class="mdl-card__menu">
+        </div>
+
+      </div>
+    </div>
+
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Item', new_item_path %>
+    
+</div>

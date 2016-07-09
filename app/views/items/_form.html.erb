@@ -1,33 +1,110 @@
-<%= form_for(@item) do |f| %>
-  <% if @item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+<!-- Styles for Elements exclusive to this View -->
+<style>
 
-      <ul>
-      <% @item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  h4 {
+    margin: 0;
+    padding: 0;
+  }
+
+  h6 {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Makes hyperlinks display as normal text */
+  A {
+    color: inherit;
+    text-decoration:none
+    }
+
+  .demo-card-wide.mdl-card {
+    width: auto;
+    max-width: 1400px;
+    margin-top: 100px;
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+
+  .demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 176px;
+  }
+
+  .demo-card-wide > .mdl-card__menu {
+    color: #000;
+}
+
+</style>
+
+<!-- Material Design Item Info Form -->
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+
+  <div class="mdl-card__title" style="background-image: url('http://i.imgur.com/3nSsUn5.png')">
+  </div>
+
+  <div class="mdl-card__supporting-text">
+    <div class="mdl-card__supporting-text">
+      <h4>Item Info</h4>
     </div>
-  <% end %>
+  </div>
+  <div class="mdl-card__actions mdl-card--border" style ="height:1000px">
+    <br><br><br>
 
-  <div class="field">
-    <%= f.label :Name %><br>
-    <%= f.text_field :name %>
+    <!-- Item Info Form -->
+    <%= form_for(@item) do |f| %>
+
+      <% if @item.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+          <ul>
+            <% @item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <!-- Name Field -->
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <%= f.label :Name, :class => 'mdl-textfield__label' %>
+        <%= f.text_field :name, autofocus:true, :class => 'mdl-textfield__input'%>
+      </div>
+      <br>
+
+      <!-- Retailer Field -->
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <%= f.label :Retailer, :class => 'mdl-textfield__label' %>
+        <%= f.text_field :retailer, autofocus:true, :class => 'mdl-textfield__input'%>
+      </div>
+      <br>
+
+      <!-- URL Field -->
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <%= f.label :URL, :class => 'mdl-textfield__label' %>
+        <%= f.text_field :url, autofocus:true, :class => 'mdl-textfield__input'%>
+      </div>
+      <br>
+
+      <!-- Price Field -->
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <%= f.label :Price, :class => 'mdl-textfield__label' %>
+        <%= f.number_field :price, autofocus:true, :class => 'mdl-textfield__input'%>
+      </div>
+      <br>
+
+      <!-- Submit Button -->
+      <%= f.submit "Save", :class => 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect'%>
+
+    <% end %>
+
   </div>
-  <div class="field">
-    <%= f.label :Retailer %><br>
-    <%= f.text_field :retailer %>
+
+  <!-- Cancel Button -->
+  <div class="mdl-card__menu">
+    <%= link_to items_path do%>
+      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+        <i class="material-icons">close</i>
+      </button>
+    <%end%>
   </div>
-  <div class="field">
-    <%= f.label :Url %><br>
-    <%= f.text_field :url %>
-  </div>
-  <div class="field">
-    <%= f.label :Price %><br>
-    <%= f.number_field :price %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

@@ -1,0 +1,67 @@
+<!-- Styles for Elements exclusive to this View -->
+<style>
+
+  /* Background */
+  body {
+    background-image: url("http://i.imgur.com/3nSsUn5.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+</style>
+
+<!-- Sign Up Card -->
+<div class="mdl-cell mdl-cell--12-col">
+
+  <!-- Begin Sign Up Form -->
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+  <div class="demo-card-wide mdl-card mdl-shadow--2dp"style="width:35%; margin-top: 15%;margin-left:auto; margin-right:auto">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text" style="color:#000000">
+        Log In
+      </h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+
+      <!-- Email Field -->
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <%= f.label :Email, :class => 'mdl-textfield__label' %>
+        <%= f.email_field :email, autofocus:true, :class => 'mdl-textfield__input'%>
+      </div>
+      <br>
+
+      <!-- Password Field -->
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <%= f.label :password,  :class => 'mdl-textfield__label'%>
+        <%= f.password_field :password, autocomplete: "off" , :class => 'mdl-textfield__input'%>
+      </div>
+      <br>
+      <br>
+
+      <!-- Remember Me Field -->
+      <% if devise_mapping.rememberable? -%>
+        <div class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+          <%= f.check_box :remember_me, :class => 'mdl-checkbox__input' %>
+          <%= f.label :remember_me, :class => 'mdl-checkbox__label' %>
+        </div>
+        <br>
+        <br>
+    </div>
+
+    <!-- Log In Button -->
+    <div class="mdl-card__actions mdl-card--border">
+      <div style="display:inline">
+        <%= f.submit "Log In", :class => 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect'%>
+      </div>
+      <% end %>
+      <%= render "devise/shared/links" %>
+
+      <!-- End Sign Up Form -->
+      <% end %>
+    </div>
+
+  </div>
+
+</div>
